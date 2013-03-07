@@ -1,12 +1,6 @@
 package com.osinka.slugify
 
-class Slugify(algo: String) {
-  protected val tr = {
-    import com.ibm.icu.text.Transliterator
-    Transliterator.getInstance(algo)
-  }
-  protected def normalize(s: String) = tr transliterate s
-
+class Slugify(normalize: (String => String)) {
   protected val duplicateDashes = """-+""".r
   protected def dedupDashes(s: String) = duplicateDashes.replaceAllIn(s, "-")
 
@@ -14,7 +8,7 @@ class Slugify(algo: String) {
 
   protected def preprocess(s: String) = s.trim
 
-  protected val slugify = Function.chain( List(preprocess _, normalize _, whitespaces _, dedupDashes _) )
+  protected val slugify = Function.chain( List(preprocess _, normalize, whitespaces _, dedupDashes _) )
 
   def apply(s: String) = slugify(s)
 }
@@ -33,9 +27,15 @@ class Slugify(algo: String) {
   * http://stackoverflow.com/questions/1657193/java-code-library-for-generating-slugs-for-use-in-pretty-urls
   */
 object Slugify {
-  val ASCII = """Any-Latin; Latin-ASCII; NFD; [:Nonspacing Mark:] Remove; NFC; [^-_\p{Latin}\p{Digit}\p{Space}] Remove; Any-Lower"""
+  val ASCII = """Any-Latin; Latin-ASCII; [^-_\p{Latin}\p{Digit}\p{Space}] Remove; Any-Lower"""
 
-  def as(algo: String) = new Slugify(algo)
+  def normalize(algo: String) = {
+    import com.ibm.icu.text.Transliterator
+    val tr = Transliterator.getInstance(algo)
+    (s: String) => tr.transliterate(s)
+  }
+
+  def as(algo: String) = new Slugify(normalize(algo))
 
   lazy val default = as(ASCII)
 

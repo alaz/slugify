@@ -32,5 +32,8 @@ class slugifySpec extends FunSpec with ShouldMatchers {
     it("drops punctuation") {
       slugify("""A long line with "a'hu'as"bol&s""") should equal("a-long-line-with-ahuasbols")
     }
+    it("lowercases") {
+      slugify("""ФЫВАЯYAUSL""") should equal("""fyvaayausl""")
+    }
   }
 }
