@@ -22,12 +22,15 @@ class slugifySpec extends FunSpec with ShouldMatchers {
       slugify("ава ук ефы") should equal("ava-uk-efy")
     }
     it("drops accents") {
-      slugify("Ȳá") should equal("Ya")
+      slugify("Ȳá") should equal("ya")
     }
     it("drops non-characters") {
       // there is a lot of characters that cannot be translated into latin
       // mostly greek, math, etc.
-      slugify("-ҥѶƇ-") should equal("-")
+      slugify("-ҥѶƇ-") should equal("-c-")
+    }
+    it("drops punctuation") {
+      slugify("""A long line with "a'hu'as"bol&s""") should equal("a-long-line-with-ahuasbols")
     }
   }
 }
