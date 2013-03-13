@@ -20,7 +20,8 @@ scalacOptions ++= List("-deprecation", "-unchecked", "-feature")
 
 libraryDependencies ++= Seq(
   "com.ibm.icu" % "icu4j" % "50.1.1",
-  "org.scalatest" %% "scalatest" % "2.0.M5b" % "test"
+  "org.scalatest" %% "scalatest" % "2.0.M5b" % "test",
+  "org.scalacheck" %% "scalacheck" % "1.10.0" % "test"
 )
 
 credentials <+= (version) map { version: String =>

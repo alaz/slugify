@@ -2,8 +2,9 @@ package com.osinka.slugify
 
 import org.scalatest.FunSpec
 import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.prop.PropertyChecks
 
-class slugifySpec extends FunSpec with ShouldMatchers {
+class slugifySpec extends FunSpec with ShouldMatchers with PropertyChecks {
   val slugify = Slugify.default
   describe("Slugify") {
     it("converts deutsch ß to ss") {
@@ -34,6 +35,17 @@ class slugifySpec extends FunSpec with ShouldMatchers {
     }
     it("lowercases") {
       slugify("""ФЫВАЯYAUSL""") should equal("""fyvaayausl""")
+    }
+    it("meets the `slug` laws") {
+      forAll { (str: String) =>
+        val slug = slugify(str)
+        slug should not(startWith("-") and endWith("-"))
+        slug.count(_.isUpper) should equal(0)
+        slug.count(_.isSpaceChar) should equal(0)
+        slug should not(include("--"))
+        slug should not(include("""[^-_\p{ASCII}\p{Digit}]"""))
+        slug should not(include("""[^-_\p{Latin}\p{Digit}]"""))
+      }
     }
   }
 }

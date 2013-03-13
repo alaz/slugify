@@ -4,7 +4,8 @@ class Slugify(normalize: (String => String)) {
   protected val duplicateDashes = """-+""".r
   protected def dedupDashes(s: String) = duplicateDashes.replaceAllIn(s, "-")
 
-  protected def whitespaces(s: String) = s.replaceAll(" ", "-")
+  protected val space = """\p{Space}""".r
+  protected def whitespaces(s: String) = space.replaceAllIn(s, "-")
 
   protected def preprocess(s: String) = s.trim
 
