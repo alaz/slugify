@@ -1,0 +1,21 @@
+{
+  "organization" : "com.osinka.slugify",
+  "name" : "slugify",
+  "version" : "1.0.1",
+  "description" : "Making slugs out of any string",
+  "site" : "https://github.com/osinka/slugify",
+  "tags" : [ "slug", "slugify" ],
+  "docs" : "https://github.com/osinka/slugify",
+  "resolvers" : [ "https://oss.sonatype.org/content/repositories/releases" ],
+  "dependencies" : [ {
+    "organization" : "com.ibm.icu",
+    "name" : "icu4j",
+    "version" : "51.2"
+  } ],
+  "scalas" : [ "2.10.2" ],
+  "licenses" : [ {
+    "name" : "Apache License, Version 2.0",
+    "url" : "http://www.apache.org/licenses/LICENSE-2.0"
+  } ],
+  "sbt" : false
+}
