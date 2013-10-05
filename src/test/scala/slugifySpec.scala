@@ -1,10 +1,9 @@
 package com.osinka.slugify
 
-import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{FunSpec, Matchers}
 import org.scalatest.prop.PropertyChecks
 
-class slugifySpec extends FunSpec with ShouldMatchers with PropertyChecks {
+class slugifySpec extends FunSpec with Matchers with PropertyChecks {
   val slugify = Slugify.default
   describe("Slugify") {
     it("converts deutsch ß to ss") {

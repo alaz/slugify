@@ -1,5 +1,3 @@
-import ls.Plugin._
-
 organization := "com.osinka.slugify"
 
 name := "slugify"
@@ -8,7 +6,7 @@ homepage := Some(url("https://github.com/osinka/slugify"))
 
 startYear := Some(2013)
 
-scalaVersion := "2.10.2"
+scalaVersion := "2.10.3"
 
 licenses += "Apache License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")
 
@@ -20,7 +18,7 @@ scalacOptions ++= List("-deprecation", "-unchecked", "-feature")
 
 libraryDependencies ++= Seq(
   "com.ibm.icu" % "icu4j" % "51.2",
-  "org.scalatest" %% "scalatest" % "2.0.M5b" % "test",
+  "org.scalatest" %% "scalatest" % "2.0.RC1" % "test",
   "org.scalacheck" %% "scalacheck" % "1.10.1" % "test"
 )
 
@@ -43,12 +41,6 @@ publishTo <<= (version) { version: String =>
 }
 
 useGpg := true
-
-seq(lsSettings: _*)
-
-(LsKeys.tags in LsKeys.lsync) := Seq("slug", "slugify")
-
-(LsKeys.docsUrl in LsKeys.lsync) := Some(url("https://github.com/osinka/slugify"))
 
 pomExtra := <xml:group>
     <developers>
