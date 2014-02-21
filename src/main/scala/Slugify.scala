@@ -28,7 +28,7 @@ class Slugify(normalize: (String => String)) {
   * http://stackoverflow.com/questions/1657193/java-code-library-for-generating-slugs-for-use-in-pretty-urls
   */
 object Slugify {
-  val ASCII = """Any-Latin; Latin-ASCII; [^-_\p{Latin}\p{Digit}\p{Space}] Remove; Any-Lower"""
+  val ASCII = """Bulgarian-Latin/BGN; Any-Latin; Latin-ASCII; [^-_\p{Latin}\p{Digit}\p{Space}] Remove; Any-Lower"""
 
   def normalize(algo: String) = {
     import com.ibm.icu.text.Transliterator

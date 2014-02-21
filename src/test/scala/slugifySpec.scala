@@ -19,7 +19,7 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
       slugify("   6    ") should equal("6")
     }
     it("transliterates cyrillic characters") {
-      slugify("ава ук ефы") should equal("ava-uk-efy")
+      slugify("ава ук ефы ш") should equal("ava-uk-efy-sh")
     }
     it("drops accents") {
       slugify("Ȳá") should equal("ya")
@@ -33,7 +33,7 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
       slugify("""A long line with "a'hu'as"bol&s""") should equal("a-long-line-with-ahuasbols")
     }
     it("lowercases") {
-      slugify("""ФЫВАЯYAUSL""") should equal("""fyvaayausl""")
+      slugify("""ФЫВАЯYAUSL""") should equal("""fyvayayausl""")
     }
     it("meets the `slug` laws") {
       forAll { (str: String) =>

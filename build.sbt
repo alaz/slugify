@@ -18,7 +18,7 @@ scalacOptions ++= List("-deprecation", "-unchecked", "-feature")
 
 libraryDependencies ++= Seq(
   "com.ibm.icu" % "icu4j" % "51.2",
-  "org.scalatest" %% "scalatest" % "2.0.RC1" % "test",
+  "org.scalatest" %% "scalatest" % "2.0" % "test",
   "org.scalacheck" %% "scalacheck" % "1.10.1" % "test"
 )
 
