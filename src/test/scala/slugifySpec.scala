@@ -19,7 +19,8 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
       slugify("   6    ") should equal("6")
     }
     it("transliterates cyrillic characters w/ BGN romanization") {
-      slugify("а б в г д е ж з и й к л м н о п р с т у ф х ц ч ш щ ю я") should equal("a-b-v-g-d-e-zh-z-i-i-k-l-m-n-o-p-r-s-t-u-f-kh-ts-ch-sh-sht-yu-ya")
+      slugify("а б в г д е ж з и й к л м н о п р с т у ф х ц ч ш щ э ю я ь ъ") should equal("a-b-v-g-d-e-zh-z-i-i-k-l-m-n-o-p-r-s-t-u-f-kh-ts-ch-sh-sht-e-yu-ya-u")
+      slugify("Ольга") should equal("olga")
     }
     it("drops accents") {
       slugify("Ȳá") should equal("ya")
@@ -29,8 +30,8 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
       // mostly greek, math, etc.
       slugify("ҥѶƇ") should equal("c")
     }
-    it("replaces punctuation with dashes") {
-      slugify("""A long line with "a'hu'as"bol&s""") should equal("a-long-line-with-a-hu-as-bol-s")
+    it("replaces select punctuation with dashes") {
+      slugify("""A+l[on]g-l(in)e@{wit}h "a'hu'as"bol&s""") should equal("a-l-on-g-l-in-e-wit-h-ahuasbol-s")
     }
     it("lowercases") {
       slugify("""ФЫВАЯYAUSL""") should equal("""fyvayayausl""")
