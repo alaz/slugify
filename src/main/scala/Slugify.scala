@@ -4,12 +4,16 @@ class Slugify(normalize: (String => String)) {
   protected val duplicateDashes = """-+""".r
   protected def dedupDashes(s: String) = duplicateDashes.replaceAllIn(s, "-")
 
+  protected val firstDashes = """^-+""".r
+  protected val lastDashes = """-+$""".r
+  protected def trimDashes(s: String) = lastDashes.replaceAllIn(firstDashes.replaceAllIn(s, ""), "")
+
   protected val space = """\p{Space}""".r
   protected def whitespaces(s: String) = space.replaceAllIn(s, "-")
 
   protected def preprocess(s: String) = s.trim
 
-  protected val slugify = Function.chain( List(preprocess _, normalize, whitespaces _, dedupDashes _) )
+  protected val slugify = Function.chain( List(preprocess _, normalize, whitespaces _, dedupDashes _, trimDashes _) )
 
   def apply(s: String) = slugify(s)
 }

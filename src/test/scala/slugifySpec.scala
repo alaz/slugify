@@ -9,8 +9,8 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
     it("converts deutsch ß to ss") {
       slugify("ß") should equal("ss")
     }
-    it("keeps _ -") {
-      slugify("--__-") should equal("-__-")
+    it("keeps _") {
+      slugify("* --__- *") should equal("__")
     }
     it("replaces any number of whitespaces with minus") {
       slugify("1  3  6") should equal("1-3-6")
@@ -18,8 +18,8 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
     it("drops heading or ending spaces") {
       slugify("   6    ") should equal("6")
     }
-    it("transliterates cyrillic characters") {
-      slugify("ава ук ефы ш") should equal("ava-uk-efy-sh")
+    it("transliterates cyrillic characters w/ BGN romanization") {
+      slugify("а б в г д е ж з и й к л м н о п р с т у ф х ц ч ш щ ю я") should equal("a-b-v-g-d-e-zh-z-i-i-k-l-m-n-o-p-r-s-t-u-f-kh-ts-ch-sh-sht-yu-ya")
     }
     it("drops accents") {
       slugify("Ȳá") should equal("ya")
@@ -27,7 +27,7 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
     it("drops non-characters") {
       // there is a lot of characters that cannot be translated into latin
       // mostly greek, math, etc.
-      slugify("-ҥѶƇ-") should equal("-c-")
+      slugify("ҥѶƇ") should equal("c")
     }
     it("drops punctuation") {
       slugify("""A long line with "a'hu'as"bol&s""") should equal("a-long-line-with-ahuasbols")
