@@ -29,8 +29,8 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
       // mostly greek, math, etc.
       slugify("ҥѶƇ") should equal("c")
     }
-    it("drops punctuation") {
-      slugify("""A long line with "a'hu'as"bol&s""") should equal("a-long-line-with-ahuasbols")
+    it("replaces punctuation with dashes") {
+      slugify("""A long line with "a'hu'as"bol&s""") should equal("a-long-line-with-a-hu-as-bol-s")
     }
     it("lowercases") {
       slugify("""ФЫВАЯYAUSL""") should equal("""fyvayayausl""")

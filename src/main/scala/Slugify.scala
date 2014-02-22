@@ -4,16 +4,14 @@ class Slugify(normalize: (String => String)) {
   protected val duplicateDashes = """-+""".r
   protected def dedupDashes(s: String) = duplicateDashes.replaceAllIn(s, "-")
 
-  protected val firstDashes = """^-+""".r
-  protected val lastDashes = """-+$""".r
-  protected def trimDashes(s: String) = lastDashes.replaceAllIn(firstDashes.replaceAllIn(s, ""), "")
+  protected val firstDash = """^-""".r
+  protected val lastDash = """-$""".r
+  protected def trimEnds(s: String) = lastDash.replaceFirstIn(firstDash.replaceFirstIn(s, ""), "")
 
-  protected val space = """\p{Space}""".r
-  protected def whitespaces(s: String) = space.replaceAllIn(s, "-")
+  protected val nonWord = """[^\w]""".r
+  protected def toDashes(s: String) = nonWord.replaceAllIn(s, "-")
 
-  protected def preprocess(s: String) = s.trim
-
-  protected val slugify = Function.chain( List(preprocess _, normalize, whitespaces _, dedupDashes _, trimDashes _) )
+  protected val slugify = Function.chain( List(normalize, toDashes _, dedupDashes _, trimEnds _) )
 
   def apply(s: String) = slugify(s)
 }
@@ -32,7 +30,7 @@ class Slugify(normalize: (String => String)) {
   * http://stackoverflow.com/questions/1657193/java-code-library-for-generating-slugs-for-use-in-pretty-urls
   */
 object Slugify {
-  val ASCII = """Bulgarian-Latin/BGN; Any-Latin; Latin-ASCII; [^-_\p{Latin}\p{Digit}\p{Space}] Remove; Any-Lower"""
+  val ASCII = """Bulgarian-Latin/BGN; Any-Latin; Latin-ASCII; [^\p{Print}] Remove; Any-Lower"""
 
   def normalize(algo: String) = {
     import com.ibm.icu.text.Transliterator
