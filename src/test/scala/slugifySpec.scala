@@ -9,9 +9,8 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
     it("converts deutsch ß to ss") {
       slugify("ß") should equal("ss")
     }
-    it("keeps _ inside letters/digits") {
-      slugify("* --9__1- *") should equal("9__1")
-      slugify("* -a__b-*-") should equal("a__b")
+    it("keeps _") {
+      slugify("* --__- *") should equal("__")
     }
     it("replaces any number of whitespaces with minus") {
       slugify("1  3  6") should equal("1-3-6")
@@ -33,9 +32,6 @@ class slugifySpec extends FunSpec with Matchers with PropertyChecks {
     }
     it("replaces select punctuation with dashes") {
       slugify("""A+l[on]g-l(in)e@{wit}h "a'hu'as"bol&s""") should equal("a-l-on-g-l-in-e-wit-h-ahuasbol-s")
-    }
-    it("keeps both string ends clean ") {
-      slugify("""^_^sunny^_^""") should equal("sunny")
     }
     it("lowercases") {
       slugify("""ФЫВАЯYAUSL""") should equal("""fyvayayausl""")

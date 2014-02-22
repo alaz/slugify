@@ -4,8 +4,8 @@ class Slugify(normalize: (String => String)) {
   protected val duplicateDashes = """-+""".r
   protected def dedupDashes(s: String) = duplicateDashes.replaceAllIn(s, "-")
 
-  protected val firstDash = """^[_\-]+""".r
-  protected val lastDash = """[_\-]+$""".r
+  protected val firstDash = """^-""".r
+  protected val lastDash = """-$""".r
   protected def trimEnds(s: String) = lastDash.replaceFirstIn(firstDash.replaceFirstIn(s, ""), "")
 
   protected val nonWord = """[^\w]""".r
