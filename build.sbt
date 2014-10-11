@@ -19,9 +19,9 @@ description := """Making slugs out of any string"""
 scalacOptions ++= List("-deprecation", "-unchecked", "-feature")
 
 libraryDependencies ++= Seq(
-  "com.ibm.icu"		%  "icu4j"	% "53.1",
+  "com.ibm.icu"		%  "icu4j"	% "54.1.1",
   "org.scalatest"	%% "scalatest"	% "2.2.2"	% "test",
-  "org.scalacheck"	%% "scalacheck"	% "1.11.5"	% "test"
+  "org.scalacheck"	%% "scalacheck"	% "1.11.6"	% "test"
 )
 
 credentials <+= (version) map { version: String =>
