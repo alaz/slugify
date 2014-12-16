@@ -6,9 +6,9 @@ homepage := Some(url("https://github.com/osinka/slugify"))
 
 startYear := Some(2013)
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.6"
 
-crossScalaVersions := Seq("2.11.2", "2.10.4")
+crossScalaVersions := Seq("2.11.6", "2.10.5")
 
 licenses += "Apache License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")
 
@@ -19,9 +19,9 @@ description := """Making slugs out of any string"""
 scalacOptions ++= List("-deprecation", "-unchecked", "-feature")
 
 libraryDependencies ++= Seq(
-  "com.ibm.icu"		%  "icu4j"	% "54.1.1",
-  "org.scalatest"	%% "scalatest"	% "2.2.2"	% "test",
-  "org.scalacheck"	%% "scalacheck"	% "1.11.6"	% "test"
+  "com.ibm.icu"		%  "icu4j"	% "55.1",
+  "org.scalatest"	%% "scalatest"	% "2.2.4"	% "test",
+  "org.scalacheck"	%% "scalacheck"	% "1.12.2"	% "test"
 )
 
 credentials <+= (version) map { version: String =>
