@@ -12,5 +12,6 @@ cache:
   - $HOME/.ivy2/cache
   - $HOME/.sbt/boot/
 notifications:
-  slack:
-    secure: NOpL1XMu0iZPfMyfNU+TzWjUnxCcvc/9wAt4gj2FxSdfvC6j3Ww9cUthBttBLWwDN/bAKhC2F+PdTssavno1zYLG3ZkdyrsLhCgjgpHtXESzi2QCUD1nILv5MLBu8qaMlDuZym7ZGWPF0rFInaXHccxMicX2usCBeR5YDwJRunc=
+  hipchat:
+    rooms:
+      secure: gVnEy6T6/HQBBD1LWlCzekvqBmLSRNkvNhTexNdhM9X6TEKDm0Aj5bmPBdr5zISz+bquif/Sneq6C1YGg0j6on5mo/TSWqRaTbZtbgFqwrLmo8XX94qHE+WJKXRNLCMcdyDyp7QFy2/7ZYzvVZ0OqQcYYDFyOG64psh/iSLXmkA=
